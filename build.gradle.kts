@@ -29,7 +29,10 @@ tasks.register<JavaExec>("runCoroutines") {
     mainClass = "benchmark.CoroutineBenchmarkKt"
     maxHeapSize = "4g"
     argumentProviders.add(CommandLineArgumentProvider {
-        listOf(providers.gradleProperty("taskCount").orElse("1000000").get())
+        listOf(
+            providers.gradleProperty("taskCount").orElse("1000000").get(),
+            providers.gradleProperty("ioWaitMillis").orElse("100").get(),
+        )
     })
 }
 
@@ -40,6 +43,9 @@ tasks.register<JavaExec>("runVirtualThreads") {
     mainClass = "benchmark.VirtualThreadBenchmark"
     maxHeapSize = "4g"
     argumentProviders.add(CommandLineArgumentProvider {
-        listOf(providers.gradleProperty("taskCount").orElse("1000000").get())
+        listOf(
+            providers.gradleProperty("taskCount").orElse("1000000").get(),
+            providers.gradleProperty("ioWaitMillis").orElse("100").get(),
+        )
     })
 }

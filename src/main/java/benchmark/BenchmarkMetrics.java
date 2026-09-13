@@ -33,10 +33,12 @@ public final class BenchmarkMetrics {
         int processors = osBean.getAvailableProcessors();
         double oneCoreCpuPercent = 100.0 * cpuNanos / wallNanos;
         double machineCpuPercent = oneCoreCpuPercent / processors;
+        double throughput = taskCount / (wallNanos / 1e9);
 
         System.out.printf(Locale.ROOT, "%n=== %s ===%n", name);
         System.out.printf(Locale.ROOT, "Tasks completed:        %,d%n", taskCount);
         System.out.printf(Locale.ROOT, "Wall-clock time:       %,.3f s%n", wallNanos / 1e9);
+        System.out.printf(Locale.ROOT, "Throughput:            %,.0f tasks/s%n", throughput);
         System.out.printf(Locale.ROOT, "Process CPU time:      %,.3f s%n", cpuNanos / 1e9);
         System.out.printf(Locale.ROOT, "Average CPU usage:     %,.1f%% of one core%n", oneCoreCpuPercent);
         System.out.printf(Locale.ROOT, "Average machine CPU:   %,.1f%% of %d cores%n", machineCpuPercent, processors);
