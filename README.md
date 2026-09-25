@@ -23,19 +23,19 @@ utilization, and runtime-managed heap usage.
 
 The recorded benchmark used:
 
-| Component | Version or configuration |
-|---|---|
-| Machine | Apple MacBook Pro with M3 Pro, 11 available CPU cores |
-| Java | Oracle JDK 25.0.4.1 LTS |
-| Kotlin JVM plugin | 2.4.10 |
-| kotlinx.coroutines | 1.10.2 |
-| Go | 1.21.5, darwin/arm64 |
-| Rust | rustc/cargo 1.97.1, edition 2024 |
-| Tokio | 1.53.1, multi-thread runtime |
-| Gradle wrapper | 9.7.1 |
-| Maximum heap | 4 GiB per benchmark JVM |
-| Default task count | 1,000,000 |
-| Default simulated I/O wait | 100 ms per task |
+| Component                  | Version or configuration                              |
+|----------------------------|-------------------------------------------------------|
+| Machine                    | Apple MacBook Pro with M3 Pro, 11 available CPU cores |
+| Java                       | Oracle JDK 25.0.4.1 LTS                               |
+| Kotlin JVM plugin          | 2.4.20                                                |
+| kotlinx.coroutines         | 1.10.2                                                |
+| Go                         | 1.21.5, darwin/arm64                                  |
+| Rust                       | rustc/cargo 1.97.1, edition 2024                      |
+| Tokio                      | 1.53.1, multi-thread runtime                          |
+| Gradle wrapper             | 9.7.1                                                 |
+| Maximum heap               | 4 GiB per benchmark JVM                               |
+| Default task count         | 1,000,000                                             |
+| Default simulated I/O wait | 100 ms per task                                       |
 
 You do not need to install Gradle separately because the project includes the
 Gradle wrapper. A compatible JDK 25 installation, Go, and Rust are required to run
@@ -131,17 +131,17 @@ You can combine both properties:
 I/O-wait benchmark recorded on September 13, 2026, using one million tasks and
 100 ms of simulated I/O latency per task:
 
-| Metric | Kotlin | Java VT | Go | Rust Tokio | Winner |
-|---|---:|---:|---:|---:|---|
-| Tasks completed | 1,000,000 | 1,000,000 | 1,000,000 | 1,000,000 | Tie |
-| Wall-clock time | 3.766 s | 11.504 s | 1.770 s | 1.504 s | Rust |
-| Throughput | 265,514/s | 86,928/s | 565,092/s | 664,769/s | Rust |
-| Process CPU time | 15.325 s | 51.217 s | 9.941 s | 7.000 s | Rust |
-| Average CPU usage | 406.9% | 445.2% | 561.7% | 465.3% | Context-dependent |
-| Average machine CPU | 37.0% | 40.5% | 51.1% | 42.3% | Context-dependent |
-| Heap before workload | 1.5 MiB | 1.3 MiB | 0.1 MiB | 0.0 MiB | Rust |
-| Peak heap used | 828.7 MiB | 1,372.1 MiB | 611.5 MiB | 366.3 MiB | Rust |
-| Heap after workload | 589.1 MiB | 979.1 MiB | 611.5 MiB | 0.1 MiB | See note below |
+| Metric               |    Kotlin |     Java VT |        Go | Rust Tokio | Winner            |
+|----------------------|----------:|------------:|----------:|-----------:|-------------------|
+| Tasks completed      | 1,000,000 |   1,000,000 | 1,000,000 |  1,000,000 | Tie               |
+| Wall-clock time      |   3.766 s |    11.504 s |   1.770 s |    1.504 s | Rust              |
+| Throughput           | 265,514/s |    86,928/s | 565,092/s |  664,769/s | Rust              |
+| Process CPU time     |  15.325 s |    51.217 s |   9.941 s |    7.000 s | Rust              |
+| Average CPU usage    |    406.9% |      445.2% |    561.7% |     465.3% | Context-dependent |
+| Average machine CPU  |     37.0% |       40.5% |     51.1% |      42.3% | Context-dependent |
+| Heap before workload |   1.5 MiB |     1.3 MiB |   0.1 MiB |    0.0 MiB | Rust              |
+| Peak heap used       | 828.7 MiB | 1,372.1 MiB | 611.5 MiB |  366.3 MiB | Rust              |
+| Heap after workload  | 589.1 MiB |   979.1 MiB | 611.5 MiB |    0.1 MiB | See note below    |
 
 ### Interpretation
 
